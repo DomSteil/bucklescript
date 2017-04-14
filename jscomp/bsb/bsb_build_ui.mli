@@ -29,18 +29,24 @@ type public =
     
 type dir_index = int 
 
+type generator = { input : string ; output : string; cmd : string}
+
 type  file_group = 
   { dir : string ; (* currently relative path expected for ninja file generation *)
     sources : Binary_cache.file_group_rouces ; 
     resources : string list ; (* relative path *)
     public : public;
     dir_index : dir_index; 
+    generators : generator list;
   } 
+
+
 
 type t = 
   { files :  file_group list ; 
     intervals :  Ext_file_pp.interval list ;
     globbed_dirs : string list ; 
+
   }
 
 val lib_dir_index : dir_index 

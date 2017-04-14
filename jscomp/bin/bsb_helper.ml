@@ -3998,8 +3998,9 @@ val bsbuild_cache : string
 
 
 
-(** if not added, it is guaranteed the reference equality will 
-    be held
+(** 
+  Currently it is okay to have duplicated module, 
+  In the future, we may emit a warning 
 *)
 val map_update : 
   ?dir:string -> file_group_rouces ->  string -> file_group_rouces
@@ -4114,7 +4115,7 @@ let map_update ?dir (map : file_group_rouces)  name : file_group_rouces  =
   let suffix = Ext_filename.get_extension name in 
   String_map.adjust 
     module_name 
-    (fun _ -> (adjust_module_info empty_module_info suffix (prefix name )))
+    (fun () -> (adjust_module_info empty_module_info suffix (prefix name )))
     (fun v -> (adjust_module_info v suffix (prefix name )))
     map
 

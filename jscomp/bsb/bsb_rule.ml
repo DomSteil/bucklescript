@@ -83,12 +83,12 @@ let define
 
 let build_ast_and_deps =
   define
-    ~command:"${bsc}  ${pp_flags} ${ppx_flags} ${bsc_flags} -c -o ${out} -bs-syntax-only -bs-binary-ast ${in}"
+    ~command:"$bsc  $pp_flags $ppx_flags $bsc_flags -c -o $out -bs-syntax-only -bs-binary-ast ${in}"
     "build_ast_and_deps"
 
 let build_ast_and_deps_from_reason_impl =
   define
-    ~command:"${bsc} -pp \"${refmt} ${refmt_flags}\" ${reason_react_jsx}  ${ppx_flags} ${bsc_flags} -c -o ${out} -bs-syntax-only -bs-binary-ast -impl ${in}"
+    ~command:"$bsc -pp \"$refmt $refmt_flags\" $reason_react_jsx  $ppx_flags ${bsc_flags} -c -o ${out} -bs-syntax-only -bs-binary-ast -impl ${in}"
     "build_ast_and_deps_from_reason_impl"
 
 let build_ast_and_deps_from_reason_intf =

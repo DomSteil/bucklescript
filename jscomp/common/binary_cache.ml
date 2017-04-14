@@ -106,6 +106,6 @@ let map_update ?dir (map : file_group_rouces)  name : file_group_rouces  =
   let suffix = Ext_filename.get_extension name in 
   String_map.adjust 
     module_name 
-    (fun _ -> (adjust_module_info empty_module_info suffix (prefix name )))
+    (fun () -> (adjust_module_info empty_module_info suffix (prefix name )))
     (fun v -> (adjust_module_info v suffix (prefix name )))
     map
