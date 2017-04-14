@@ -40,7 +40,7 @@ let get_dev_index, get_current_number_of_dev_groups =
    (fun _ -> !dir_index ))
 
 
-
+type generator = { input : string ; output : string; cmd : string}
 (** 
    0 : lib 
    1 : dev 1 
@@ -51,7 +51,11 @@ type  file_group =
     sources : Binary_cache.file_group_rouces; 
     resources : string list ;
     public : public ;
-    dir_index : dir_index 
+    dir_index : dir_index ;
+    generators : generator list ; 
+    (** output of [generators] should be added to [sources],
+      if it is [.ml,.mli,.re,.rei]
+    *)
   } 
 
 (**
@@ -60,10 +64,12 @@ type  file_group =
      otherwise it will be idented twice
 *)
 
-type t = 
+
+type t =   
   { files :  file_group list ; 
     intervals :  Ext_file_pp.interval list ;    
     globbed_dirs : string list ; 
+    
   }
 
 let (//) = Ext_filename.combine
